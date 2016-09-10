@@ -1,5 +1,6 @@
 package uk.co.xenonique.clients.cs.crowdfund.loan
 
+
 /**
   * The type LoanRequest
   *
@@ -8,6 +9,8 @@ package uk.co.xenonique.clients.cs.crowdfund.loan
 
 case class LoanRequest( val amount: BigDecimal, val duration: Int )
 
-case class LoanOfferRequest( val loanRequestId: Int, val amount: BigDecimal, val apr: BigDecimal)
+case class LoanOffer( val amount: BigDecimal, val apr: BigDecimal)
 
-case class CurrentOfferRequest( val loanRequestId: Int, val amount: BigDecimal, val apr: BigDecimal )
+case class LoanOfferBundle(val loanRequestId: Int, val loanOffers: List[LoanOffer])
+
+case class CurrentOfferResponse(val loanRequestId: Int, val amount: BigDecimal, val apr: BigDecimal )
