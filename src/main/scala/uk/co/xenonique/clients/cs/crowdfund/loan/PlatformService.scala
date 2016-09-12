@@ -58,7 +58,6 @@ object PlatformService {
             amountWithInterest += loanOffer.amount * (1.0 + loanOffer.apr / 100.0)
             amount = amount - loanOffer.amount
             dealOffers.append(LoanOffer( loanOffer.loanOfferId, loanOffer.amount, loanOffer.apr))
-            dealOffers.append(LoanOffer( loanOffer.loanOfferId, loanOffer.amount, loanOffer.apr))
             println(s"amountWithInterest=$amountWithInterest, amountWithoutInterest=${amountWithoutInterest}")
           }
         }
