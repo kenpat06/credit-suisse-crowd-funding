@@ -1,6 +1,6 @@
-package uk.co.xenonique.clients.cs.crowdfund
-import com.twitter.finagle.{Http, Service}
-import com.twitter.finagle.http
+package uk.co.xenonique.clients.cs.research
+
+import com.twitter.finagle.{Http, Service, http}
 import com.twitter.util.{Await, Future}
 
 /**
