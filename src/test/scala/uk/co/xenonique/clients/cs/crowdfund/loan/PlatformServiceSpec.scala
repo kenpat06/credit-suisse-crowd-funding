@@ -26,6 +26,15 @@ class PlatformServiceSpec extends FlatSpec with Matchers {
     PlatformService.createLoanRequest( LoanRequest( 1000, 1000 )) should be > (0)
   }
 
+  "Platform service" should "create multiple loan requests with unique identifiers" in {
+    val request1 = PlatformService.createLoanRequest( LoanRequest( 100, 1000 ))
+    val request2 = PlatformService.createLoanRequest( LoanRequest( 300, 500 ))
+    val request3 = PlatformService.createLoanRequest( LoanRequest( 500, 250 ))
+
+    request1 should not be (request2)
+    request2 should not be (request3)
+  }
+
   "Platform service" should "create loan offer from example 1" in {
     val requestId = PlatformService.createLoanRequest( LoanRequest( 100, 1000 ))
 
