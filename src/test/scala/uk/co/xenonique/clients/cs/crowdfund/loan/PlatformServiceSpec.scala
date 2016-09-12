@@ -57,4 +57,20 @@ class PlatformServiceSpec extends FlatSpec with Matchers {
     currentOffer.apr should be (8)
     currentOffer.loanOffers should be ( List( LoanOffer( offerId1, 100,5), LoanOffer( offerId2, 500, 8.6)))
   }
+
+
+  "Platform service" should "retrieve current offer from example 2" in {
+    val requestId = PlatformService.createLoanRequest( LoanRequest( 1000, 1000 ))
+
+    val offerId1 = PlatformService.createLoanOffer( requestId, 100, 5 )
+    val offerId2 = PlatformService.createLoanOffer( requestId, 600, 6 )
+    val offerId3 = PlatformService.createLoanOffer( requestId, 600, 7 )
+    val offerId4 = PlatformService.createLoanOffer( requestId, 600, 8.2 )
+
+    val currentOffer = PlatformService.getCurrentOffer(requestId)
+    currentOffer.loanRequestId should be (requestId)
+    currentOffer.amount should be (1000)
+    currentOffer.apr should be (6.2)
+    currentOffer.loanOffers should be ( List( LoanOffer( offerId1, 100,5), LoanOffer( offerId2, 600, 6), LoanOffer( offerId3, 300, 7)))
+  }
 }

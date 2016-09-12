@@ -49,20 +49,26 @@ object PlatformService {
 
         var amount = bundle.loanRequest.amount;
 
-        var dealOffers = ListBuffer.empty[LoanOffer]
+        val dealOffers = ListBuffer.empty[LoanOffer]
         var amountWithoutInterest: BigDecimal = 0
         var amountWithInterest: BigDecimal = 0
         for ( loanOffer <- loanOffers) {
-          if ( amount > amount - loanOffer.amount ) {
-            amountWithoutInterest += loanOffer.amount
-            amountWithInterest += loanOffer.amount * (1.0 + loanOffer.apr / 100.0)
-            amount = amount - loanOffer.amount
-            dealOffers.append(LoanOffer( loanOffer.loanOfferId, loanOffer.amount, loanOffer.apr))
-            println(s"amountWithInterest=$amountWithInterest, amountWithoutInterest=${amountWithoutInterest}")
+          println(s"amount=$amount, loanOffer=${loanOffer}")
+          if ( amount > 0 ) {
+            val borrowAmount =
+              if ( amount - loanOffer.amount > 0 )
+                loanOffer.amount
+              else
+                amount
+            amountWithoutInterest += borrowAmount
+            amountWithInterest += borrowAmount * (1.0 + loanOffer.apr / 100.0)
+            amount = amount - borrowAmount
+            dealOffers.append(LoanOffer( loanOffer.loanOfferId, borrowAmount, loanOffer.apr))
+            println(s">>> borrowAmount=$borrowAmount, amountWithInterest=$amountWithInterest, amountWithoutInterest=${amountWithoutInterest}")
           }
         }
         val apr = (amountWithInterest / amountWithoutInterest - 1) * 100
-        println(s"final apr=$apr")
+        println(s">>>>>> final apr=$apr\n")
         CurrentOfferResponse( loanRequestId, amountWithoutInterest, apr, dealOffers.toList )
       }
       case _ => {
