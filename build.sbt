@@ -32,7 +32,6 @@ resolvers ++= Seq(
   "org.scala-lang" % "scala-reflect" % "2.11.8",
   "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.5",
  */
-//libraryDependencies +=
 libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api" % versions.slf4j,
   "ch.qos.logback" % "logback-classic" % versions.logback,

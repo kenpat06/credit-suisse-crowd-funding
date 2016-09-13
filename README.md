@@ -43,22 +43,65 @@ The administration port can be configured to alternate port number with the comm
 Here some useful CURL commands:
 
     ```
-     curl -i http://localhost:8080/hello
+    curl -i http://localhost:8080/hello
     ```
 
 Print a basic welcome message
 
 
     ```
-     curl -H "Content-Type: application/json" -i -X POST -d '{"amount": 1000,"duration":500}' http://localhost:8080/loan/request
+    curl -H "Content-Type: application/json" -i -X POST -d '{"amount": 1000,"duration":500}' http://localhost:8080/loan/request
     ```
 
-This command creates a loan request and returns a loan request identifier as JSON 
+As a borrower, this CURL command creates a loan request and returns a loan request identifier as JSON. 
+ 
+Suppose the loan request id is 1001, we can use it: 
 
+    ```
+    curl -H "Content-Type: application/json" -i -X POST -d '{"loanRequestId": 1001, "amount": 300,"apr":5.0}' http://localhost:8080/loan/offer
+    ```
 
+The service returns the unique loan offer id.
 
+And then another lender creates a second offer, so execute the following:
 
+    ```
+    curl -H "Content-Type: application/json" -i -X POST -d '{"loanRequestId": 1001, "amount": 500,"apr":7.5}' http://localhost:8080/loan/offer
+    ```
 
+Now if we want to get the latest offer combined bundle, then we can issue the following request:
+
+    ```
+    curl -H "Content-Type: application/json" -i -X GET  http://localhost:8080/loan/current/1001
+    ```
+
+We simply supply the loan request id as a path parameter to the REST service. 
+This loan application returns a JSON object with all combined bundle offers. 
+The output should be something like this:
+
+    ```
+    {
+        "loanRequestId": 1001,
+        "amount": 600,
+        "apr": 8,
+        "loanOffers": [
+            {
+                "loanOfferId": 8006004,
+                "amount": 100,
+                "apr": 5
+            },
+            {
+                "loanOfferId": 8006006,
+                "amount": 500,
+                "apr": 8.6
+            }
+        ]
+    }
+    ```
+
+The service provides computed loan amount and bundled APR and it also helpfully supplies a 
+break down of the individual loan offers in the deal.
+    
 
 Peter Pilgrim
 September 2016
