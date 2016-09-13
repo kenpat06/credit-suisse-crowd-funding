@@ -14,7 +14,7 @@ lazy val versions = new {
   val finagle = "6.37.0"
   val finatra = "2.3.0"
   val junit = "4.12"
-  val logback = "1.0.13"
+  val logback = "1.1.7"
   val mockito = "1.10.8"
   val scalatest = "3.0.0"
   val slf4j = "1.7.21"
@@ -34,9 +34,10 @@ resolvers ++= Seq(
  */
 //libraryDependencies +=
 libraryDependencies ++= Seq(
+  "org.slf4j" % "slf4j-api" % versions.slf4j,
+  "ch.qos.logback" % "logback-classic" % versions.logback,
   "com.twitter" %% "finagle-http" % versions.finagle,
   "com.twitter" %% "finatra-http" % versions.finatra,
-  "org.slf4j" % "slf4j-api" % versions.slf4j,
   "junit" % "junit" % versions.junit % "test",
   "org.mockito" % "mockito-all" % versions.mockito % "test",
   "org.scalactic" %% "scalactic" % versions.scalatest,
