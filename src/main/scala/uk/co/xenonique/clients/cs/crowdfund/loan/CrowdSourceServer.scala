@@ -109,4 +109,6 @@ NOTES:
   [4] http://twitter.github.io/finatra/user-guide/build-new-http-server/controller.html
   [5] http://www.slideshare.net/stevecosenza/finatra-sf-scala-47656933
   [6] https://twitter.github.io/twitter-server/Features.html#http-admin-interface
+  [7] http://twitter.github.io/finatra/user-guide/testing/
+  [8] https://github.com/twitter/finatra-activator-http-seed/blob/master/build.sbt
   */

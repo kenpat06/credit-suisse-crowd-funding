@@ -13,6 +13,7 @@ scalaVersion := "2.11.8"
 lazy val versions = new {
   val finagle = "6.37.0"
   val finatra = "2.3.0"
+  val guice = "4.0"
   val junit = "4.12"
   val logback = "1.1.7"
   val mockito = "1.10.8"
@@ -40,7 +41,24 @@ libraryDependencies ++= Seq(
   "junit" % "junit" % versions.junit % "test",
   "org.mockito" % "mockito-all" % versions.mockito % "test",
   "org.scalactic" %% "scalactic" % versions.scalatest,
-  "org.scalatest" %% "scalatest" % versions.scalatest % "test"
+  "org.scalatest" %% "scalatest" % versions.scalatest % "test",
+
+  // Finatra need to rethink this test dependency nightmare! What the blazes?
+  "com.twitter" %% "finatra-http" % versions.finatra % "test" classifier "tests",
+  "ch.qos.logback" % "logback-classic" % versions.logback % "test",
+
+  "com.twitter" %% "finatra-http" % versions.finatra % "test",
+  "com.twitter" %% "inject-server" % versions.finatra % "test",
+  "com.twitter" %% "inject-app" % versions.finatra % "test",
+  "com.twitter" %% "inject-core" % versions.finatra % "test",
+  "com.twitter" %% "inject-modules" % versions.finatra % "test",
+  "com.google.inject.extensions" % "guice-testlib" % versions.guice % "test",
+
+  "com.twitter" %% "finatra-http" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-server" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-app" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-core" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-modules" % versions.finatra % "test" classifier "tests"
 )
 
 
