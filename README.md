@@ -23,11 +23,40 @@ The challenge
     
 
 
-I used Scala 2.11.8 and the brand new ScalaTest 3 release.
-I also used Finagle, Twitter REST API library
+I used Scala 2.11.8 
+
+I chose the following libraries
+
+    * the brand new ScalaTest 3 release.    
+    * Finagle, Twitter REST API library
+    * Finatra, Fast, testable, Scala services built on TwitterServer and Finagle.
 
 
 See `LICENSE.txt' for the license for this source code
+
+
+The server is located in the Scala object `CrowdSourceServerApp`
+The connect port number is 8080.
+The default administration port is 9990 for Finagle applications. I had clash with another application using that port.
+The administration port can be configured to alternate port number with the command line argument `-admin.port=:10000`
+
+Here some useful CURL commands:
+
+    ```
+     curl -i http://localhost:8080/hello
+    ```
+
+Print a basic welcome message
+
+
+    ```
+     curl -H "Content-Type: application/json" -i -X POST -d '{"amount": 1000,"duration":500}' http://localhost:8080/loan/request
+    ```
+
+This command creates a loan request and returns a loan request identifier as JSON 
+
+
+
 
 
 

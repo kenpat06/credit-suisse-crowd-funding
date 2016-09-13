@@ -12,6 +12,7 @@ import scala.collection.mutable.{ArrayBuffer, ListBuffer}
   */
 object PlatformService {
 
+
   private val requestIdentifier = new AtomicInteger(1001)
   private val loanIdentifier = new AtomicInteger(8006004)
 
@@ -25,7 +26,6 @@ object PlatformService {
   }
 
   def createLoanOffer(loanRequestId: Int, amount: BigDecimal, apr: BigDecimal): Int = {
-
     dataset.get(loanRequestId) match {
       case Some(bundle) => {
         val loanOfferId = loanIdentifier.getAndAdd(2)
@@ -37,8 +37,10 @@ object PlatformService {
         throw new NoSuchElementException("loan request does not exist")
       }
     }
-
   }
+
+  def createLoanOffer(loanOfferRequest: LoanOfferRequest): Int =
+    createLoanOffer( loanOfferRequest.loanRequestId, loanOfferRequest.amount, loanOfferRequest.apr)
 
   def getCurrentOffer(loanRequestId: Int): CurrentOfferResponse = {
     dataset.get(loanRequestId) match {

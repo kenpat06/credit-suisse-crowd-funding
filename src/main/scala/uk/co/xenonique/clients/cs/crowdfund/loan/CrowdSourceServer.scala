@@ -3,6 +3,7 @@ package uk.co.xenonique.clients.cs.crowdfund.loan
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.routing.HttpRouter
 import com.twitter.finatra.http.{Controller, HttpServer}
+import com.twitter.server.TwitterServer
 
 /**
   * The type CrowdSourceServerApp
@@ -16,7 +17,7 @@ object CrowdSourceServerApp extends CrowdSourceServer
   *
   * @author Peter Pilgrim (peter)
   */
-class CrowdSourceServer extends HttpServer  {
+class CrowdSourceServer extends HttpServer with TwitterServer {
 
   override protected def defaultFinatraHttpPort: String = ":8080"
   // No longer exists: override protected def defaultTracingEnabled: Boolean = false
@@ -25,6 +26,7 @@ class CrowdSourceServer extends HttpServer  {
   override protected def configureHttp(router: HttpRouter): Unit = {
     router.add(new HelloController)
     router.add(new CreateLoanRequestController)
+    router.add(new CreateLoanOfferController)
   }
 }
 
@@ -38,6 +40,12 @@ class HelloController extends Controller {
 class CreateLoanRequestController extends Controller {
   post("/loan/request") { loanRequest: LoanRequest =>
      Map( "id" -> PlatformService.createLoanRequest(loanRequest))
+  }
+}
+
+class CreateLoanOfferController extends Controller {
+  post("/loan/offer") { loanOfferRequest: LoanOfferRequest =>
+    Map( "id" -> PlatformService.createLoanOffer(loanOfferRequest))
   }
 }
 

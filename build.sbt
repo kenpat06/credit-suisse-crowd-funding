@@ -23,6 +23,8 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   "com.twitter" %% "finagle-http" % "6.37.0",
   "com.twitter" %% "finatra-http" % "2.3.0",
+  "com.twitter" %% "finatra-http" % "2.3.0",
+  "org.slf4j" % "slf4j-api" % "1.7.21",
   "junit" % "junit" % "4.12" % "test",
   "org.mockito" % "mockito-all" % "1.10.8" % "test",
   "org.scalactic" %% "scalactic" % "3.0.0",
