@@ -7,7 +7,6 @@ name := "credit-suisse-crowd-funding"
 version := "1.0"
 
 // What version of Scala do we need?
-
 scalaVersion := "2.11.8"
 
 // Force JDK 8
@@ -20,7 +19,7 @@ lazy val versions = new {
   val junit = "4.12"
   val logback = "1.1.7"
   val mockito = "1.10.8"
-  val scalatest = "3.0.0"
+  val scalatest = "2.2.6"
   val slf4j = "1.7.21"
   val specs2 = "2.3.12"
   val swagger = "0.5.0"
@@ -39,8 +38,8 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api" % versions.slf4j,
   "ch.qos.logback" % "logback-classic" % versions.logback,
-  "com.twitter" %% "finagle-http" % versions.finagle,
   "com.twitter" %% "finatra-http" % versions.finatra,
+  "com.twitter" %% "finagle-http" % versions.finagle,
   "junit" % "junit" % versions.junit % "test",
   "org.mockito" % "mockito-all" % versions.mockito % "test",
   "org.scalactic" %% "scalactic" % versions.scalatest,
