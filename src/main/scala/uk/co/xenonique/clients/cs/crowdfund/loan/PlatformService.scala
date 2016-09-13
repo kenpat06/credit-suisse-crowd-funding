@@ -48,11 +48,10 @@ object PlatformService {
       case Some(bundle) => {
         val loanOfferId = loanIdentifier.getAndAdd(2)
         bundle.loanOffers = bundle.loanOffers ::: List( LoanOffer(loanOfferId, amount, apr) )
-        println(s"createLoanOffer() bundle=$bundle")
         loanOfferId
       }
       case _ => {
-        throw new NoSuchElementException("loan request does not exist")
+        throw new NoSuchElementException(s"loan request id: $loanRequestId does not exist")
       }
     }
   }
@@ -63,9 +62,7 @@ object PlatformService {
   def getCurrentOffer(loanRequestId: Int): CurrentOfferResponse = {
     dataset.get(loanRequestId) match {
       case Some(bundle) => {
-        println(s"getCurrentOffer() bundle=$bundle")
         val loanOffers = bundle.loanOffers.sortWith( (x,y) => x.apr < y.apr )
-        println(s"loanOffers=$loanOffers")
 
         var amount = bundle.loanRequest.amount;
 
@@ -73,7 +70,6 @@ object PlatformService {
         var amountWithoutInterest: BigDecimal = 0
         var amountWithInterest: BigDecimal = 0
         for ( loanOffer <- loanOffers) {
-          println(s"amount=$amount, loanOffer=${loanOffer}")
           if ( amount > 0 ) {
             val borrowAmount =
               if ( amount - loanOffer.amount > 0 )
@@ -84,15 +80,13 @@ object PlatformService {
             amountWithInterest += borrowAmount * (1.0 + loanOffer.apr / 100.0)
             amount = amount - borrowAmount
             dealOffers.append(LoanOffer( loanOffer.loanOfferId, borrowAmount, loanOffer.apr))
-            println(s">>> borrowAmount=$borrowAmount, amountWithInterest=$amountWithInterest, amountWithoutInterest=${amountWithoutInterest}")
           }
         }
         val apr = (amountWithInterest / amountWithoutInterest - 1) * 100
-        println(s">>>>>> final apr=$apr\n")
         CurrentOfferResponse( loanRequestId, amountWithoutInterest, apr, dealOffers.toList )
       }
       case _ => {
-        throw new NoSuchElementException("loan request does not exist")
+        throw new NoSuchElementException(s"loan request id: $loanRequestId does not exist")
       }
     }
   }
