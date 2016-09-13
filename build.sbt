@@ -9,6 +9,19 @@ version := "1.0"
 // What version of Scala do we need?
 scalaVersion := "2.11.8"
 
+
+lazy val versions = new {
+  val finagle = "6.37.0"
+  val finatra = "2.3.0"
+  val junit = "4.12"
+  val logback = "1.0.13"
+  val mockito = "1.10.8"
+  val scalatest = "3.0.0"
+  val slf4j = "1.7.21"
+  val specs2 = "2.3.12"
+  val swagger = "0.5.0"
+}
+
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
   "Twitter Maven" at "https://maven.twttr.com"
@@ -21,14 +34,13 @@ resolvers ++= Seq(
  */
 //libraryDependencies +=
 libraryDependencies ++= Seq(
-  "com.twitter" %% "finagle-http" % "6.37.0",
-  "com.twitter" %% "finatra-http" % "2.3.0",
-  "com.twitter" %% "finatra-http" % "2.3.0",
-  "org.slf4j" % "slf4j-api" % "1.7.21",
-  "junit" % "junit" % "4.12" % "test",
-  "org.mockito" % "mockito-all" % "1.10.8" % "test",
-  "org.scalactic" %% "scalactic" % "3.0.0",
-  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  "com.twitter" %% "finagle-http" % versions.finagle,
+  "com.twitter" %% "finatra-http" % versions.finatra,
+  "org.slf4j" % "slf4j-api" % versions.slf4j,
+  "junit" % "junit" % versions.junit % "test",
+  "org.mockito" % "mockito-all" % versions.mockito % "test",
+  "org.scalactic" %% "scalactic" % versions.scalatest,
+  "org.scalatest" %% "scalatest" % versions.scalatest % "test"
 )
 
 

@@ -1,9 +1,12 @@
 package uk.co.xenonique.clients.cs.crowdfund.loan
 
+import com.twitter.finagle.http.{HttpMuxer, Request, Response, Status}
+import com.twitter.finagle.Service
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.routing.HttpRouter
 import com.twitter.finatra.http.{Controller, HttpServer}
 import com.twitter.server.TwitterServer
+import com.twitter.util.{Await, Future, Time}
 
 /**
   * The type CrowdSourceServerApp
@@ -28,6 +31,21 @@ class CrowdSourceServer extends HttpServer with TwitterServer {
     router.add(new CreateLoanRequestController)
     router.add(new CreateLoanOfferController)
   }
+
+  val counter = statsReceiver.counter("requests_counter")
+
+  val what = flag("what", "hello", "String to return")
+
+  val service = new Service[Request, Response] {
+    def apply(request: Request) = {
+      log.debug("Received a request at " + Time.now)
+      counter.incr()
+      val response = Response(request.version, Status.Ok)
+      response.contentString = what() + "\n"
+      Future.value(response)
+    }
+  }
+
 }
 
 
