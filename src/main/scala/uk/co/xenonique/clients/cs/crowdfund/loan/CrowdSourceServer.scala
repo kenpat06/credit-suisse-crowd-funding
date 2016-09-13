@@ -18,16 +18,12 @@
  *******************************************************************************/
 package uk.co.xenonique.clients.cs.crowdfund.loan
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include
-import com.twitter.finagle.http.{HttpMuxer, Request, Response, Status}
 import com.twitter.finagle.Service
-import com.twitter.finagle.http.Request
+import com.twitter.finagle.http.{Request, Response, Status}
 import com.twitter.finatra.http.routing.HttpRouter
 import com.twitter.finatra.http.{Controller, HttpServer}
-import com.twitter.finatra.json.modules.FinatraJacksonModule
-import com.twitter.finatra.json.utils.CamelCasePropertyNamingStrategy
 import com.twitter.server.TwitterServer
-import com.twitter.util.{Await, Future, Time}
+import com.twitter.util.{Future, Time}
 
 /**
   * The type CrowdSourceServerApp
@@ -69,10 +65,7 @@ class CrowdSourceServer extends HttpServer with TwitterServer {
       Future.value(response)
     }
   }
-
 }
-
-
 
 class HelloController extends Controller {
   get("/hello") { request: Request =>
@@ -101,14 +94,4 @@ class GetCurrentOfferController extends Controller {
 /**
   * Start the server with the program arguments: -admin.port=:10000
   * http://localhost:10000/admin/threads
-  *
-NOTES:
-  [1] https://github.com/shekhargulati/52-technologies-in-2016/blob/master/01-finatra/README.md
-  [2] http://twitter.github.io/finatra/user-guide/getting-started/#examples
-  [3] http://www.slideshare.net/samkiller/high-performance-rpc-with-finagle
-  [4] http://twitter.github.io/finatra/user-guide/build-new-http-server/controller.html
-  [5] http://www.slideshare.net/stevecosenza/finatra-sf-scala-47656933
-  [6] https://twitter.github.io/twitter-server/Features.html#http-admin-interface
-  [7] http://twitter.github.io/finatra/user-guide/testing/
-  [8] https://github.com/twitter/finatra-activator-http-seed/blob/master/build.sbt
   */

@@ -23,19 +23,71 @@ The challenge
     
 
 
+## Requirements
+
 I used Scala 2.11.8 
 
 I chose the following libraries
 
-    * the brand new ScalaTest 3 release.    
-    * Finagle, Twitter REST API library
-    * Finatra, Fast, testable, Scala services built on TwitterServer and Finagle.
+  * the brand new ScalaTest 3 release.    
+  * Finagle, Twitter REST API library
+  * Finatra, Fast, testable, Scala services built on TwitterServer and Finagle.
+
+
+I choose *Finagle* for the project, because Play Framework would have been overkill. 
+Finagle can be embedded into straightforward standalone application, just like 
+*DropWizard* or *Spring Boot*. Finagle is also Twitter's baby. 
+They use it in production with their other open source products *Finatra* and *TwitterServer*.
+I also heard about Finatra at a open space conference recently and this was
+the perfect test case to kick the tires. I like it, but it is fiddly and I am
+sure it will improve, because a big corporation will keep on backing it.
+
+In fact, the REST API landscape for Scala pretty much in a confusion. 
+You can choose many frameworks. Here is a [Quora question from 2011](https://www.quora.com/Which-Scala-framework-is-the-best-for-REST-API-development). 
+The point is that there is no de-facto clear winner or Scala standard for REST API, 
+so I would advice you to choose very wisely subject ability, scope and maintainability.
 
 
 See `LICENSE.txt' for the license for this source code
 
+## Building the software
 
-The server is located in the Scala object `CrowdSourceServerApp`
+The software was built with SBT.
+
+Start with a clean build, execute SBT like so:
+
+    > sbt clean
+
+
+Compile the entire software with the following command:
+
+    > sbt compile
+
+
+To execute the unit tests in the project, use this next command:
+
+    > sbt test
+    
+
+To run the server from SBT use the following command:
+
+    > sbt run 
+
+
+
+To change the administration web service port number, use the following argument 
+
+    > sbt run -admin.port=:10000
+    
+    
+
+For my project, I worked with [IntelliJ IDEA 2016.2.4](https://www.jetbrains.com/idea/)
+
+
+
+## Running the server
+
+The server is located in the Scala object `uk.co.xenonique.clients.cs.crowdfund.loan.CrowdSourceServerApp`
 The connect port number is 8080.
 The default administration port is 9990 for Finagle applications. I had clash with another application using that port.
 The administration port can be configured to alternate port number with the command line argument `-admin.port=:10000`
@@ -90,9 +142,24 @@ The output should be something like this:
 The service provides computed loan amount and bundled APR and it also helpfully supplies a 
 break down of the individual loan offers in the deal.
     
+    
+## TODO ##
+
+  * Resolve dependency snafu with Finatra feature test or use Apache HttpClient as a stop gap
+  
+
+
+
+Any issue, please contact me below. Cheers!
+
 
 Peter Pilgrim
 September 2016
-Web: http://www.xenonique.co.uk
-Blog: http://www.xenonique.co.uk/blog 
-Twitter: http://twitter.com/peter_pilgrim (please follow me!)
+
+  * Web: http://www.xenonique.co.uk
+  * Blog: http://www.xenonique.co.uk/blog 
+  * Mentorship: http://www.xenonique.co.uk/mentorship
+  * Consulting: http://www.xenonique.co.uk/consulting
+  * Training: http://www.xenonique.co.uk/training
+  * Twitter: http://twitter.com/peter_pilgrim (please follow me!)
+

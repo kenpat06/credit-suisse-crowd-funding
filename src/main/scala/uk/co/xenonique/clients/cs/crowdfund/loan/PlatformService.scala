@@ -21,7 +21,7 @@ package uk.co.xenonique.clients.cs.crowdfund.loan
 import java.util.concurrent.atomic.AtomicInteger
 
 import scala.collection.immutable.HashMap
-import scala.collection.mutable.{ArrayBuffer, ListBuffer}
+import scala.collection.mutable.ListBuffer
 
 /**
   * The type PlatformService

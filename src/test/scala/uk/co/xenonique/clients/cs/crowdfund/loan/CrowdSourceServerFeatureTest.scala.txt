@@ -1,3 +1,5 @@
+// Commented out? Why? See ``STACKTRACE.md''
+
 package uk.co.xenonique.clients.cs.crowdfund.loan
 
 import com.twitter.finagle.http.Status

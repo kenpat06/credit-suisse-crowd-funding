@@ -9,10 +9,12 @@ version := "1.0"
 // What version of Scala do we need?
 scalaVersion := "2.11.8"
 
+// Force JDK 8
+scalacOptions += "-target:jvm-1.8"
 
 lazy val versions = new {
   val finagle = "6.37.0"
-  val finatra = "2.3.0"
+  val finatra = "2.4.0"
   val guice = "4.0"
   val junit = "4.12"
   val logback = "1.1.7"
@@ -61,8 +63,8 @@ libraryDependencies ++= Seq(
   "com.twitter" %% "inject-modules" % versions.finatra % "test" classifier "tests"
 )
 
-
-// mainClass in (Compile,run) := Some("uk.co.xenonique.agileit.XYZ")
+// set the main class for 'sbt run'
+mainClass in (Compile,run) := Some("uk.co.xenonique.clients.cs.crowdfund.loan.CrowdSourceServerApp")
 
 // fork a new JVM for 'run' and 'test:run'
 fork := true
