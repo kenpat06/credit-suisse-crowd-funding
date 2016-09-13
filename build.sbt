@@ -7,6 +7,7 @@ name := "credit-suisse-crowd-funding"
 version := "1.0"
 
 // What version of Scala do we need?
+
 scalaVersion := "2.11.8"
 
 // Force JDK 8

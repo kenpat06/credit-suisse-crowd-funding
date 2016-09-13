@@ -78,7 +78,12 @@ To run the server from SBT use the following command:
 To change the administration web service port number, use the following argument 
 
     > sbt run -admin.port=:10000
-    
+
+
+There is a bug in [SBT somewhere and launch programs with arguments from the command line](http://stackoverflow.com/questions/13309738/sbt-run-with-cli-arguments-from-shell). 
+I found the following command, worked for me on Mac OS X
+
+    > sbt "run-main uk.co.xenonique.clients.cs.crowdfund.loan.CrowdSourceServerApp  -admin.port=:10000"
     
 
 For my project, I worked with [IntelliJ IDEA 2016.2.4](https://www.jetbrains.com/idea/)
