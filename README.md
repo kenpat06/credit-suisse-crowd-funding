@@ -1,6 +1,6 @@
 # Credit Suisse crowd sourcing loan platform
 
-This was my project to answer the [Credit Suisse](http://cs.com) crowd-sourcing loan platform 
+This was my project to answer the [Credit Suisse](https://www.credit-suisse.com) crowd-sourcing loan platform 
 
 The challenge
 
