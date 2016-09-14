@@ -13,7 +13,7 @@ scalaVersion := "2.11.8"
 scalacOptions += "-target:jvm-1.8"
 
 lazy val versions = new {
-  val finagle = "6.37.0"
+  val finagle = "6.38.0"
   val finatra = "2.4.0"
   val guice = "4.0"
   val junit = "4.12"
@@ -23,6 +23,7 @@ lazy val versions = new {
   val slf4j = "1.7.21"
   val specs2 = "2.3.12"
   val swagger = "0.5.0"
+  val zeta = "0.2-SNAPSHOT"
 }
 
 resolvers ++= Seq(
@@ -42,8 +43,8 @@ libraryDependencies ++= Seq(
   "com.twitter" %% "finagle-http" % versions.finagle,
   "junit" % "junit" % versions.junit % "test",
   "org.mockito" % "mockito-all" % versions.mockito % "test",
-  "org.scalactic" %% "scalactic" % versions.scalatest,
-  "org.scalatest" %% "scalatest" % versions.scalatest % "test",
+  "org.scalactic" %% "scalactic" % "2.2.6",
+  "org.scalatest" %% "scalatest" % "2.2.6" % "test",
 
   // Finatra need to rethink this test dependency nightmare! What the blazes?
   "com.twitter" %% "finatra-http" % versions.finatra % "test" classifier "tests",

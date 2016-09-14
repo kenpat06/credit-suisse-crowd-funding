@@ -1,5 +1,7 @@
 # Stacktrace
 
+*THIS IS RESOLVED* - 14 September 2016 - See Github issues on [Finatra 349](https://github.com/twitter/finatra/issues/349) and also [Finatra 350](https://github.com/twitter/finatra/issues/350) 
+
 Try as hard as I might, I failed to get Finatra's feature test capabilities working 
 
 The `CrowdSourceServerFeatureTest` test produced a stacktrace

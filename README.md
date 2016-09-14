@@ -29,7 +29,7 @@ I used Scala 2.11.8
 
 I chose the following libraries
 
-  * the brand new ScalaTest 3 release.    
+  * the brand new ScalaTest 2.2.6 release.    
   * Finagle, Twitter REST API library
   * Finatra, Fast, testable, Scala services built on TwitterServer and Finagle.
 
@@ -49,6 +49,9 @@ so I would advice you to choose very wisely subject ability, scope and maintaina
 
 
 See `LICENSE.txt' for the license for this source code
+
+NB: Finatra 6.38.0 is certified against Scala 2.2.6. I chatted to one of the Finatra maintainers who said that they have yet to build against ScalaTest 3.0.0 yet.
+
 
 ## Building the software
 
@@ -77,8 +80,9 @@ To run the server from SBT use the following command:
 
 To change the administration web service port number, use the following argument 
 
-    > sbt run -admin.port=:10000
-
+    > sbt "run -admin.port=:10000"
+    
+Note: the double quotes around the SBT argument are very important! SBT is fiddly.
 
 There is a bug in [SBT somewhere and launch programs with arguments from the command line](http://stackoverflow.com/questions/13309738/sbt-run-with-cli-arguments-from-shell). 
 I found the following command, worked for me on Mac OS X
