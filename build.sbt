@@ -58,6 +58,7 @@ libraryDependencies ++= Seq(
   "com.google.inject.extensions" % "guice-testlib" % versions.guice % "test",
 
   "com.twitter" %% "finatra-http" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "finatra-jackson" % versions.finatra % "test" classifier "tests",
   "com.twitter" %% "inject-server" % versions.finatra % "test" classifier "tests",
   "com.twitter" %% "inject-app" % versions.finatra % "test" classifier "tests",
   "com.twitter" %% "inject-core" % versions.finatra % "test" classifier "tests",
