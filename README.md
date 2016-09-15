@@ -152,15 +152,21 @@ The output should be something like this:
 The service provides computed loan amount and bundled APR and it also helpfully supplies a 
 break down of the individual loan offers in the deal.
     
+   
+## Testing
+
+The following comand
+
+    sbt test
     
-## TODO ##
-
-  * Resolve dependency snafu with Finatra feature test or use Apache HttpClient as a stop gap
-  
-
+Executes the unit tests and the feature tests. The Finatra feature tests execute an embedded server 
+and demonstrate how to use the platform service. There are now test methods to check that 404 NOT FOUND
+is returned when loan request id is missing.
 
 
-Any issue, please contact me below. Cheers!
+## End
+
+For any urgency issues, please contact me below. Cheers!
 
 
 Peter Pilgrim

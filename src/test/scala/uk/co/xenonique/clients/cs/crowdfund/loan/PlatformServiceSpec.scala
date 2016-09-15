@@ -93,13 +93,20 @@ class PlatformServiceSpec extends FlatSpec with Matchers {
   }
 
   "Platform service" should "fail to create loan offer with unknown loan request id " in {
-    val requestId = Math.random().toInt
-
+    val requestId = scala.util.Random.nextInt(1000000) + 200000
     val caught =
       intercept[NoSuchElementException] {
         PlatformService.createLoanOffer( LoanOfferRequest( requestId, 100, 5) )
       }
-    assert(caught.getMessage.contains("does not exist"))
+    assert(caught.getMessage.contains("loan request id:") && caught.getMessage.contains("does not exist"))
   }
 
+  "Platform service" should "fail to retrieve current loan offer with unknown loan request id " in {
+    val requestId = scala.util.Random.nextInt(1000000) + 200000
+    val caught =
+      intercept[NoSuchElementException] {
+        PlatformService.getCurrentOffer( requestId )
+      }
+    assert(caught.getMessage.contains("loan request id:") && caught.getMessage.contains("does not exist"))
+  }
 }

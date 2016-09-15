@@ -75,19 +75,29 @@ class HelloController extends Controller {
 
 class CreateLoanRequestController extends Controller {
   post("/loan/request") { loanRequest: LoanRequest =>
-     Map( "id" -> PlatformService.createLoanRequest(loanRequest))
+    Map( "id" -> PlatformService.createLoanRequest(loanRequest))
   }
 }
 
 class CreateLoanOfferController extends Controller {
   post("/loan/offer") { loanOfferRequest: LoanOfferRequest =>
-    Map( "id" -> PlatformService.createLoanOffer(loanOfferRequest))
+    try {
+      Map( "id" -> PlatformService.createLoanOffer(loanOfferRequest))
+    }
+    catch{
+      case e:NoSuchElementException => response.notFound(e.getMessage)
+    }
   }
 }
 
 class GetCurrentOfferController extends Controller {
   get("/loan/current/:id") { request: Request =>
-    PlatformService.getCurrentOffer( request.params("id").toInt )
+    try {
+      PlatformService.getCurrentOffer( request.params("id").toInt )
+    }
+    catch{
+      case e:NoSuchElementException => response.notFound(e.getMessage)
+    }
   }
 }
 
