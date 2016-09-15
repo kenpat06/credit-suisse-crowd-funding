@@ -41,6 +41,7 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % versions.logback,
   "com.twitter" %% "finatra-http" % versions.finatra,
   "com.twitter" %% "finagle-http" % versions.finagle,
+  "com.twitter" %% "finatra-jackson" % versions.finatra,
   "junit" % "junit" % versions.junit % "test",
   "org.mockito" % "mockito-all" % versions.mockito % "test",
   "org.scalactic" %% "scalactic" % "2.2.6",
