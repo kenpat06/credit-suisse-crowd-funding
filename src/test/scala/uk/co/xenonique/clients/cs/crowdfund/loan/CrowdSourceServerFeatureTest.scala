@@ -19,7 +19,9 @@ class CrowdSourceServerFeatureTest  extends FeatureTest {
     "greet the world politely" in {
       server.httpGet(
         path = "/hello",
-        andExpect = Status.Ok)
+        andExpect = Status.Ok,
+        withBody = "Crowd source loan platform says hello"
+      )
       /* ... */
     }
   }
