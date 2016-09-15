@@ -44,8 +44,8 @@ libraryDependencies ++= Seq(
   "com.twitter" %% "finatra-jackson" % versions.finatra,
   "junit" % "junit" % versions.junit % "test",
   "org.mockito" % "mockito-all" % versions.mockito % "test",
-  "org.scalactic" %% "scalactic" % "2.2.6",
-  "org.scalatest" %% "scalatest" % "2.2.6" % "test",
+  "org.scalactic" %% "scalactic" % versions.scalatest,
+  "org.scalatest" %% "scalatest" % versions.scalatest % "test",
 
   // Finatra need to rethink this test dependency nightmare! What the blazes?
   "com.twitter" %% "finatra-http" % versions.finatra % "test" classifier "tests",

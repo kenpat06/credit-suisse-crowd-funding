@@ -91,4 +91,15 @@ class PlatformServiceSpec extends FlatSpec with Matchers {
     currentOffer.apr should be (6.2)
     currentOffer.loanOffers should be ( List( LoanOffer( offerId1, 100,5), LoanOffer( offerId2, 600, 6), LoanOffer( offerId3, 300, 7)))
   }
+
+  "Platform service" should "fail to create loan offer with unknown loan request id " in {
+    val requestId = Math.random().toInt
+
+    val caught =
+      intercept[NoSuchElementException] {
+        PlatformService.createLoanOffer( LoanOfferRequest( requestId, 100, 5) )
+      }
+    assert(caught.getMessage.contains("does not exist"))
+  }
+
 }

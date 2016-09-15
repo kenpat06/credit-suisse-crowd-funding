@@ -70,6 +70,8 @@ class CrowdSourceServerFeatureTest  extends FeatureTest {
       """.stripMargin
     )
 
+    nap()
+
     for (jsonBody <- expectedJsonInputAndOutput) {
       server.httpPost(
         path = "/loan/offer",
@@ -77,6 +79,7 @@ class CrowdSourceServerFeatureTest  extends FeatureTest {
         andExpect = Status.Ok,
         withJsonBody = jsonBody._2
       )
+      nap()
     }
   }
 
@@ -105,5 +108,9 @@ class CrowdSourceServerFeatureTest  extends FeatureTest {
           |}
         """.stripMargin
     )
+  }
+
+  def nap(): Unit = {
+    Thread.sleep(150L)
   }
 }
