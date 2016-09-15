@@ -105,7 +105,8 @@ Here some useful CURL commands:
 
     curl -i http://localhost:8080/hello
 
-Print a basic welcome message
+Prints a basic welcome message and let's you know that the RESTful service is reachable alive and well.
+Of course, Finagle has a simple health REST endpoint on the administration port. 
 
 
     curl -H "Content-Type: application/json" -i -X POST -d '{"amount": 1000,"duration":500}' http://localhost:8080/loan/request
